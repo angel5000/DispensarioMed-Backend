@@ -1,0 +1,6 @@
+@WebDispensario_HostAddress = http://localhost:5034
+
+GET {{WebDispensario_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
