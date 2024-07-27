@@ -6,22 +6,21 @@ namespace WebDispensario.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AgendasMedController : ControllerBase
+    public class EspecialidadesController : ControllerBase
     {
-
-        private readonly IRepositorioAgenda _repositorioAgendas;
-        public AgendasMedController(IRepositorioAgenda repositorioAgendas)
+        private readonly IRepositorioEspecialidad _repositorioEspecialidades;
+        public EspecialidadesController(IRepositorioEspecialidad repositorioEspecialidades)
 
         {
-            _repositorioAgendas = repositorioAgendas;
+            _repositorioEspecialidades = repositorioEspecialidades;
         }
         [HttpGet]
 
-        public async Task<IActionResult> Get(string sector, string especialidad)
+        public async Task<IActionResult> Get()
         {
             try
             {
-                var lista = await _repositorioAgendas.ObtenerDisponible( sector,  especialidad);
+                var lista = await _repositorioEspecialidades.ObtenerTodos();
                 return Ok(lista);
             }
             catch (Exception ex)
@@ -29,6 +28,7 @@ namespace WebDispensario.Controllers
                 return BadRequest(ex.ToString());
             }
         }
+
 
     }
 }

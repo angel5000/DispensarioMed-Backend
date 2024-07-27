@@ -20,6 +20,8 @@ public class Program
         ().AllowAnyHeader().AllowAnyMethod()));
 
         builder.Services.AddScoped<IRepositorioUbicaciones, RepositorioUbicaciones>();
+        builder.Services.AddScoped<IRepositorioEspecialidad, RepositorioEspecialidad>();
+        builder.Services.AddScoped<IRepositorioAgenda, RepositorioAgenda>();
         builder.Services.AddControllers().AddJsonOptions(options =>
         {
 

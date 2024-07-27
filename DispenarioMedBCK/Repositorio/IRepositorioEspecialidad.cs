@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static DispenarioMedBCK.Repositorio.RepositorioAgenda;
 
 namespace DispenarioMedBCK.Repositorio
 {
-    public interface IRepositorioAgenda
+    public interface IRepositorioEspecialidad
     {
-        Task<List<HorarioCitaDTO>> ObtenerDisponible(string sector, string especialidad);
+        Task<List<Especialidad>> ObtenerTodos();
 
     }
 }
