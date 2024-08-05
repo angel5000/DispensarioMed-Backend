@@ -1,4 +1,5 @@
-﻿using DispenarioMedBCK.Repositorio;
+﻿using DispenarioMedBCK.Models;
+using DispenarioMedBCK.Repositorio;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,6 +43,31 @@ namespace WebDispensario.Controllers
                 return BadRequest(ex.ToString());
             }
         }
-
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] Paciente pacienteActualizado)
+        {
+            try
+            {
+                var pacienteModificado = await _repositorioPaciente.ModificarPaciente(id, pacienteActualizado);
+                return Ok(pacienteModificado);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
+        /*  [HttpPut("{id}")]
+          public async Task<IActionResult> Update(int id, [FromBody] Paciente pacienteActualizado)
+          {
+              try
+              {
+                  var pacienteModificado = await _repositorioPaciente.ModificarPaciente(id, pacienteActualizado);
+                  return Ok(pacienteModificado);
+              }
+              catch (Exception ex)
+              {
+                  return BadRequest(ex.ToString());
+              }
+          }*/
     }
 }

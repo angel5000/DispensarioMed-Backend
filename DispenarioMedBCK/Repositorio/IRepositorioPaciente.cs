@@ -11,6 +11,7 @@ namespace DispenarioMedBCK.Repositorio
     {
         Task<List<Paciente>> ObtenerTodos();
         Task<List<Paciente>> PacienteID(int id);
+        Task<Paciente> ModificarPaciente(int id, Paciente pacienteActualizado);
 
     }
 }
