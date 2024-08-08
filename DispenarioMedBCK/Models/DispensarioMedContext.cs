@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using static DispenarioMedBCK.Repositorio.RepositorioCitasMedicas;
 
 namespace DispenarioMedBCK.Models;
 
-public partial class DispensarioContext : DbContext
+public partial class DispensarioMedContext : DbContext
 {
-    public DispensarioContext()
+    public DispensarioMedContext()
     {
     }
 
-    public DispensarioContext(DbContextOptions<DispensarioContext> options)
+    public DispensarioMedContext(DbContextOptions<DispensarioMedContext> options)
         : base(options)
     {
     }
- 
+
     public virtual DbSet<Area> Areas { get; set; }
 
     public virtual DbSet<AuditoriaPaciente> AuditoriaPacientes { get; set; }
@@ -25,8 +24,6 @@ public partial class DispensarioContext : DbContext
     public virtual DbSet<CitasMedica> CitasMedicas { get; set; }
 
     public virtual DbSet<CostoServicio> CostoServicios { get; set; }
-
-    public virtual DbSet<EjemploTabla> EjemploTablas { get; set; }
 
     public virtual DbSet<Especialidad> Especialidads { get; set; }
 
@@ -62,10 +59,10 @@ public partial class DispensarioContext : DbContext
 
     public virtual DbSet<UsuariosinactivosHistorial> UsuariosinactivosHistorials { get; set; }
 
-/*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-BUQ5QOC;Database=DispensarioMed;User Id=sa;Password=Angpro500; TrustServerCertificate=true;");
-    */
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-BUQ5QOC;Database=DispensarioMed;User Id=sa;Password=Angpro500; TrustServerCertificate=true; encrypt=true;");
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Area>(entity =>
@@ -179,17 +176,6 @@ public partial class DispensarioContext : DbContext
             entity.HasOne(d => d.IdmcmNavigation).WithMany(p => p.CostoServicios)
                 .HasForeignKey(d => d.Idmcm)
                 .HasConstraintName("Motivosfk");
-        });
-
-        modelBuilder.Entity<EjemploTabla>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__EjemploT__3214EC27766A3892");
-
-            entity.ToTable("EjemploTabla");
-
-            entity.Property(e => e.Id).HasColumnName("ID");
-            entity.Property(e => e.Datos).HasMaxLength(255);
-            entity.Property(e => e.FechaRegistro).HasColumnType("datetime");
         });
 
         modelBuilder.Entity<Especialidad>(entity =>
@@ -470,10 +456,6 @@ public partial class DispensarioContext : DbContext
             entity.Property(e => e.NumeroTelefono)
                 .HasMaxLength(14)
                 .IsUnicode(false);
-
-            entity.HasOne(d => d.IdPacienteNavigation).WithMany(p => p.TelefonosPacientes)
-                .HasForeignKey(d => d.IdPaciente)
-                .HasConstraintName("numpcfk");
         });
 
         modelBuilder.Entity<Ubicacion>(entity =>

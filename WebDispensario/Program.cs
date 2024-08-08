@@ -13,7 +13,7 @@ public class Program
 
         // Add services to the container.
 
-        builder.Services.AddDbContext<DispensarioContext>(opcion => opcion.UseSqlServer("name=DefaultConnection"));
+        builder.Services.AddDbContext<DispensarioMedContext>(opcion => opcion.UseSqlServer("name=DefaultConnection"));
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddCors(options => options.AddPolicy("AllowWebApp", builder => builder.AllowAnyOrigin
@@ -27,6 +27,7 @@ public class Program
         builder.Services.AddScoped<IRepositorioFacturareg, RepositorioFacturareg>();
         builder.Services.AddScoped< RepositorioLogin>();
         builder.Services.AddScoped<IRepositorioCitasMedicas, RepositorioCitasMedicas>();
+        builder.Services.AddScoped<IRepositorioRegistrar, RepositorioRegistrar>();
         builder.Services.AddControllers().AddJsonOptions(options =>
         {
 

@@ -10,8 +10,8 @@ namespace DispenarioMedBCK.Repositorio
 {
     public class RepositorioUbicaciones : IRepositorioUbicaciones
     {
-        private readonly DispensarioContext context;
-        public RepositorioUbicaciones(DispensarioContext context)
+        private readonly DispensarioMedContext context;
+        public RepositorioUbicaciones(DispensarioMedContext context)
         {
             this.context = context;
         }

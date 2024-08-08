@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 namespace DispenarioMedBCK.Repositorio
 {
    public class RepositorioAgenda: IRepositorioAgenda
-    {
-        private readonly DispensarioContext context;
-        public RepositorioAgenda(DispensarioContext context)
+    { 
+        private readonly DispensarioMedContext context;
+        public RepositorioAgenda(DispensarioMedContext context)
         {
             this.context = context;
         }

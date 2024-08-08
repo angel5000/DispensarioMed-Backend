@@ -10,6 +10,4 @@ public partial class TelefonosPaciente
     public int? IdPaciente { get; set; }
 
     public string? NumeroTelefono { get; set; }
-
-    public virtual Paciente? IdPacienteNavigation { get; set; }
 }

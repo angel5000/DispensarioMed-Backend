@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace DispenarioMedBCK.Models;
 
@@ -31,20 +30,20 @@ public partial class Medico
     public string? CorreoElectronico { get; set; }
 
     public int? Especialidadid { get; set; }
-    [JsonIgnore]
+
     public virtual ICollection<Area> Areas { get; set; } = new List<Area>();
-    [JsonIgnore]
+
     public virtual ICollection<CitasMedica> CitasMedicas { get; set; } = new List<CitasMedica>();
-    [JsonIgnore]
+
     public virtual ICollection<Factura> Facturas { get; set; } = new List<Factura>();
-    [JsonIgnore]
+
     public virtual ICollection<HistorialMedico> HistorialMedicos { get; set; } = new List<HistorialMedico>();
-    [JsonIgnore]
+
     public virtual ICollection<HorariosCita> HorariosCita { get; set; } = new List<HorariosCita>();
-    [JsonIgnore]
+
     public virtual Ubicacion? UbicacionDispNavigation { get; set; }
-    [JsonIgnore]
+
     public virtual ICollection<UsuariosMedico> UsuariosMedicos { get; set; } = new List<UsuariosMedico>();
-    [JsonIgnore]
+
     public virtual ICollection<UsuariosinactivosHistorial> UsuariosinactivosHistorials { get; set; } = new List<UsuariosinactivosHistorial>();
 }

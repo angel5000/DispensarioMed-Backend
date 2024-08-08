@@ -13,8 +13,8 @@ namespace DispenarioMedBCK.Repositorio
     public class RepositorioLogin : IRepositorioLogin
     {
 
-        private readonly DispensarioContext context;
-        public RepositorioLogin(DispensarioContext context)
+        private readonly DispensarioMedContext context;
+        public RepositorioLogin(DispensarioMedContext context)
         {
             this.context = context;
         }

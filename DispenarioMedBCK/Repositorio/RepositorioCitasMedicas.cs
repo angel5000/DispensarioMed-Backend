@@ -12,8 +12,8 @@ namespace DispenarioMedBCK.Repositorio
     public class RepositorioCitasMedicas:IRepositorioCitasMedicas
     {
 
-        private readonly DispensarioContext context;
-        public RepositorioCitasMedicas(DispensarioContext context)
+        private readonly DispensarioMedContext context;
+        public RepositorioCitasMedicas(DispensarioMedContext context)
         {
             this.context = context;
         }

@@ -11,8 +11,8 @@ namespace DispenarioMedBCK.Repositorio
 {
    public class RepositorioFacturareg:IRepositorioFacturareg
     {
-        private readonly DispensarioContext context;
-        public RepositorioFacturareg(DispensarioContext context)
+        private readonly DispensarioMedContext context;
+        public RepositorioFacturareg(DispensarioMedContext context)
         {
             this.context = context;
         }

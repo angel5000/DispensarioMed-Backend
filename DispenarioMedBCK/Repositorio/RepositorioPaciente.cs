@@ -10,9 +10,9 @@ namespace DispenarioMedBCK.Repositorio
 {
     public class RepositorioPaciente:IRepositorioPaciente
     {
-
-        private readonly DispensarioContext context;
-        public RepositorioPaciente(DispensarioContext context)
+         
+        private readonly DispensarioMedContext context;
+        public RepositorioPaciente(DispensarioMedContext context)
         {
             this.context = context;
         }
@@ -44,7 +44,7 @@ namespace DispenarioMedBCK.Repositorio
             pacienteExistente.Canton = pacienteActualizado.Canton;
             pacienteExistente.Genero = pacienteActualizado.Genero;
             pacienteExistente.CorreoElectronico = pacienteActualizado.CorreoElectronico;
-            pacienteExistente.Telefonoid = pacienteActualizado.Telefonoid;
+          
 
             context.Pacientes.Update(pacienteExistente);
             await context.SaveChangesAsync();
