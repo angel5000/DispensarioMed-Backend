@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using static DispenarioMedBCK.Repositorio.RepositorioCitasMedicas;
 
 namespace DispenarioMedBCK.Models;
 
@@ -14,7 +15,7 @@ public partial class DispensarioContext : DbContext
         : base(options)
     {
     }
-
+ 
     public virtual DbSet<Area> Areas { get; set; }
 
     public virtual DbSet<AuditoriaPaciente> AuditoriaPacientes { get; set; }

@@ -29,7 +29,7 @@ namespace WebDispensario.Controllers
                 return BadRequest(ex.ToString());
             }
         }
-        [HttpPost]
+        [HttpGet("{id}")]
 
         public async Task<IActionResult> GetID(int id)
         {

@@ -18,6 +18,7 @@ namespace DispenarioMedBCK.Repositorio
         }
         public class HorarioCitaDTO
         {
+            public int IdHorario { get; set; }
             public string FechaHora { get; set; }
             public string NombreDoctor { get; set; }
             public string Disponibilidad { get; set; }
@@ -41,6 +42,7 @@ namespace DispenarioMedBCK.Repositorio
         .Where(hc => hc.IdDoctorNavigation.Especialidad == especialidad)
         .Select(hc => new HorarioCitaDTO
         {
+            IdHorario=hc.IdHorario,
             Especialidad=hc.IdDoctorNavigation.Especialidad,
             FechaHora = hc.FechaHora.HasValue
                 ? hc.FechaHora.Value.ToString("dddd dd 'de' MMMM yyyy - hh:mmtt", new CultureInfo("es-ES"))
@@ -55,6 +57,6 @@ namespace DispenarioMedBCK.Repositorio
             return result;
         }
 
-
-    }
+     
+        }
 }
