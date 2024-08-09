@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DispenarioMedBCK.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,7 @@ namespace DispenarioMedBCK.Repositorio
         public Task<List<CitasMedicas>> ObtenerCitasMedicas(int id);
         public  Task<bool> ReprogramarCitaAsync(int idPaciente, int idHorario, int idHorarioAnterior);
         public  Task<bool> CancelarCitaMedica(int idPaciente, int idHorario);
+
+        public Task<bool> IngresarCitaMedicaAsync(CitasMedica dto);
     }
 }

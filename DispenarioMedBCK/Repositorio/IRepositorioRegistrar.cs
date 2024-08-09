@@ -10,7 +10,7 @@ namespace DispenarioMedBCK.Repositorio
 {
   public interface IRepositorioRegistrar
     {
-        public Task<bool> RegistrarPaciente(PacienteCreateDto usuarioDto);
-        public Task<bool> RegistrarUsuariocContra(UsuariosPacientes userdt);
+        public Task<bool> RegistrarPaciente(Paciente usuarioDto);
+        public Task<bool> RegistrarUsuariocContra(UsuarioPacienteDto userDto);
     }
 }

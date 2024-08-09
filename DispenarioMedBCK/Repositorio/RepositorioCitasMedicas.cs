@@ -6,6 +6,9 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static DispenarioMedBCK.Repositorio.RepositorioCitasMedicas;
+using static DispenarioMedBCK.Repositorio.RepositorioRegistrar;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DispenarioMedBCK.Repositorio
 {
@@ -33,12 +36,88 @@ namespace DispenarioMedBCK.Repositorio
             public string Sector { get; set; }
             public virtual HorariosCitas IDHorarioCitasNavigation { get; set; }
         }
+        public class CitaMedicadto
+        {
+         
+            public int IdPaciente { get; set; }
+            public int IdMedico { get; set; }
+            public int IdHorarioCitas { get; set; }
+            public int? Motivo { get; set; }
+        }
+
+        private CitasMedica MapDtoToPaciente(CitaMedicadto dto)
+        {
+            return new CitasMedica
+            {
+                Idpaciente = dto.IdPaciente,
+                Idmedico = dto.IdMedico,
+                IdhorarioCitas = dto.IdHorarioCitas,
+                Motivo = dto.Motivo
+              
+       
+
+    };
+        }
+
+
+
+
+        public async Task<bool> IngresarCitaMedicaAsync(CitasMedica dto)
+        {
+            if (dto== null)
+            {
+                throw new ArgumentNullException(nameof(dto));
+            }
+
+            try
+            {
+                var horarioCitas = await context.HorariosCitas.FindAsync(dto.IdhorarioCitas);
+                if (horarioCitas == null)
+                {
+                    throw new InvalidOperationException("Horario de citas no encontrado.");
+                }
+
+                // 2. Establecer el estado a 2 en la entidad HorariosCita
+                horarioCitas.Disponibeid = 2;
+                context.CitasMedicas.Add(dto);
+                return await SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones y logging
+                // Ejemplo: Logger.LogError(ex, "Error al registrar paciente.");
+                throw; // O manejar la excepción de una manera adecuada
+            }
+        }
+        private async Task<bool> SaveChangesAsync()
+        {
+            var result = await context.SaveChangesAsync();
+            return result > 0;
+        }
+
+
+
+
+
+
+
+
+
+
         public class HorariosCitas
         {
             public int IDHorario { get; set; }
             public string FechaHora { get; set; }
             public int Disponibilidad { get; set; }
         }
+
+
+
+
+
+
+
+
         public async Task<List<CitasMedicas>> ObtenerCitasMedicas(int id)
         {
 

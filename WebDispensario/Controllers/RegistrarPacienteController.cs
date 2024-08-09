@@ -20,7 +20,7 @@ namespace WebDispensario.Controllers
         }
 
         [HttpPost("registrar")]
-        public async Task<IActionResult> RegistrardtPaciente([FromBody] PacienteCreateDto request)
+        public async Task<IActionResult> RegistrardtPaciente([FromBody] Paciente request)
         {
             if (request == null)
             {
@@ -31,31 +31,23 @@ namespace WebDispensario.Controllers
 
             if (result)
             {
-                return Ok(new { message = "Paciente registrado correctamente" });
+                return Ok( request.IdPaciente);
             }
             else
             {
                 return StatusCode(500, "Ocurrió un error al registrar el usuario.");
             }
+            
         }
-        [HttpPost("registrarUser")]
-        public async Task<IActionResult> RegistrarUsuario([FromBody] RegistrarUsuarioctRequest request)
+        [HttpPost]
+        public async Task<IActionResult> RegistrarUsuario([FromBody] UsuarioPacienteDto userDto)
         {
-            if (request == null)
-            {
-                return BadRequest("Usuario es nulo.");
-            }
-
-            var result = await _repositorioRegistrar.RegistrarUsuariocContra(request.UserDt);
-
+            var result = await _repositorioRegistrar.RegistrarUsuariocContra(userDto);
             if (result)
             {
-                return Ok(new { message = "Usuario registrado correctamente" });
+                return Ok();
             }
-            else
-            {
-                return StatusCode(500, "Ocurrió un error al registrar el usuario.");
-            }
+            return BadRequest();
         }
 
         public class RegistrarUsuarioRequest

@@ -30,5 +30,20 @@ namespace WebDispensario.Controllers
             }
         }
 
+        [HttpGet("{idHorario}")]
+        public async Task<IActionResult> GetHorario(int idHorario)
+        {
+            // Llama al servicio para obtener el horario por IdHorario
+            var horario = await _repositorioAgendas.ObtenerHorarioPorIdAsync(idHorario);
+
+            if (horario == null)
+            {
+                return NotFound(); // Devuelve 404 si el horario no se encuentra
+            }
+
+            return Ok(horario); // Devuelve 200 y el objeto HorarioCitaDTO si se encuentra
+        }
+
+
     }
 }

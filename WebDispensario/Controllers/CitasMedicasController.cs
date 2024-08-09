@@ -1,4 +1,5 @@
-﻿using DispenarioMedBCK.Repositorio;
+﻿using DispenarioMedBCK.Models;
+using DispenarioMedBCK.Repositorio;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using static DispenarioMedBCK.Repositorio.RepositorioCitasMedicas;
@@ -72,6 +73,48 @@ namespace WebDispensario.Controllers
             public int IdHorario { get; set; }
           
         }
+        [HttpPost]
+        public async Task<IActionResult> IngresarCitaMedica([FromBody] CitaMedicadto citaDto)
+        {
+            if (citaDto == null)
+            {
+                return BadRequest("Los datos de la cita médica no pueden ser nulos.");
+            }
 
+            try
+            {
+                // Mapea el DTO a la entidad CitasMedica
+                var citaMedica = MapDtoToCitasMedica(citaDto);
+
+                // Llama al servicio para guardar la cita médica
+                var resultado = await _repositorioCitasMedicas.IngresarCitaMedicaAsync(citaMedica);
+
+                if (resultado)
+                {
+                    return CreatedAtAction(nameof(IngresarCitaMedica), new { id = citaMedica.Idcita }, citaMedica);
+                }
+                else
+                {
+                    return StatusCode(500, "Error al ingresar la cita médica.");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones y logging
+                // Logger.LogError(ex, "Error al registrar la cita médica.");
+                return StatusCode(500, "Error interno del servidor.");
+            }
+        }
+
+        private CitasMedica MapDtoToCitasMedica(CitaMedicadto dto)
+        {
+            return new CitasMedica
+            {
+                Idpaciente = dto.IdPaciente,
+                Idmedico = dto.IdMedico,
+                IdhorarioCitas = dto.IdHorarioCitas,
+                Motivo = dto.Motivo
+            };
+        }
     }
 }

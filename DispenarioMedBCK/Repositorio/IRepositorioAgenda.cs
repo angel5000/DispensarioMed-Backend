@@ -11,6 +11,7 @@ namespace DispenarioMedBCK.Repositorio
     public interface IRepositorioAgenda
     {
         Task<List<HorarioCitaDTO>> ObtenerDisponible(string sector, string especialidad);
+        public Task<HorarioCitaDTO2> ObtenerHorarioPorIdAsync(int idHorario);
 
     }
 }

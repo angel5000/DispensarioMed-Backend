@@ -28,6 +28,7 @@ public class Program
         builder.Services.AddScoped< RepositorioLogin>();
         builder.Services.AddScoped<IRepositorioCitasMedicas, RepositorioCitasMedicas>();
         builder.Services.AddScoped<IRepositorioRegistrar, RepositorioRegistrar>();
+        builder.Services.AddScoped<IRepositorioUsuarios, RepositorioUsuarios>();
         builder.Services.AddControllers().AddJsonOptions(options =>
         {
 
